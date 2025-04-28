@@ -2,14 +2,16 @@ import { Link,NavLink } from "react-router-dom";
 import { navbarLinks } from "../../constants/links";
 import { HiOutlineSearch, HiOutlineShoppingBag, } from 'react-icons/hi';
 import { FaBarsStaggered } from 'react-icons/fa6';
+import { Logo } from "./logo";
 
 
 
 export const Navbar = () =>{
     
-    return <header className="bg-white text-black py-4 flex items-center justify-between px-5 border-b border-slate-200 lg:px-12">
-        {/* Logo */}
-    <nav>
+    return (
+    <header className="bg-white text-black py-4 flex items-center justify-between px-5 border-b border-slate-200 lg:px-12">
+        <Logo />
+                <nav className="space-x-5">
         {
             navbarLinks.map(link => (
                 <NavLink
@@ -27,10 +29,10 @@ export const Navbar = () =>{
             <HiOutlineSearch size={25} /> 
         </button>
         <div className="relative">
-            {/* User Nav*/}
+            {/* User Nav */}
             <Link to='/account' 
             className="border-2 border-slate-700 w-9 h-9 rounded-full grid place-items-center text-lg font-bold">
-            R
+               R
             </Link>
         </div>
         <button className="relative">
@@ -39,9 +41,11 @@ export const Navbar = () =>{
             </span>
             <HiOutlineShoppingBag size={25} />
         </button>
-    </div>
+    
     <button className="md:hidden">
         <FaBarsStaggered size={25} />
     </button>
+    </div>
     </header>
-}
+    );
+};
