@@ -14,12 +14,13 @@ export const RootLayout = () => {
         <Navbar />
         {
             pathname === '/' && <Banner />}
-        <main className="container my-8 flex-1">
+        <main className=" px-5 lg:px-12 max-w-7xl mx-auto my-8 flex-1 w-full">
             <Outlet />
         </main>
         {
             pathname === '/' && <Newsletter />}
         <Footer />
+        
     </div>
     )
 }

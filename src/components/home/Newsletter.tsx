@@ -5,8 +5,8 @@ export const Newsletter =() => {
         style={{ backgroundImage: 'url(/img/background-newsletter.webp'}} />
 
         {/**Contenido newsLetter */}
-        <div className="container z-10 relative p-5 md:p-0">
-            <div className="w-full text-black bg-white p-12 space-y-5 md:w-[50%] lg:w-[40%]">
+        <div className="container z-10 relative p-5 md:p-0 flex justify-center md:justify-start">
+            <div className="w-full text-black bg-white p-12 space-y-5 md:w-[50%] lg:w-[40%] md:ml-12">
                 <p className="text-xs uppercase font-semibold">
                     Suscribite a nuestro boletin y recibe promociones exclusivas
                 </p>
