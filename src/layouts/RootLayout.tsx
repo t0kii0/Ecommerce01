@@ -12,7 +12,7 @@ export const RootLayout = () => {
     <div className="h-screen flex flex-col font-montserrat">
       <Navbar />
       {pathname === "/" && <Banner />}
-      <main className=" px-5 lg:px-12 max-w-7xl mx-auto my-8 flex-1 w-full">
+      <main className=" px-5 lg:px-12  my-8 flex-1 w-full">
         <Outlet />
       </main>
       {pathname === "/" && <Newsletter />}
