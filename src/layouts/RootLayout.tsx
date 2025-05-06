@@ -6,12 +6,13 @@ import { Newsletter } from "../components/home/Newsletter";
 
 export const RootLayout = () => {
   const { pathname } = useLocation();
+  console.log(pathname);
 
   return (
     <div className="h-screen flex flex-col font-montserrat">
       <Navbar />
       {pathname === "/" && <Banner />}
-      <main className="container my-8 flex-1">
+      <main className=" px-5 lg:px-12 max-w-7xl mx-auto my-8 flex-1 w-full">
         <Outlet />
       </main>
       {pathname === "/" && <Newsletter />}
