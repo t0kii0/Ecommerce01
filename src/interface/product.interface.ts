@@ -1,4 +1,4 @@
-import { JSONContent } from "@tiptap/react";
+import { Json } from "../supanase/supabase";
 
 
 
@@ -21,8 +21,8 @@ export interface Product{
     name: string;
     brand: string;
     slug: string;
-    features: string[];
-    description: JSONContent;
+    features: string | null; // cambiar a //features: string[];// si este da error
+    description: Json;
     images: string[];
     created_at: string;
     variants: VariantProduct[];
@@ -34,7 +34,7 @@ export interface PreparedProducts{
     brand: string;
     slug: string;
     features: string[];
-    description: JSONContent;
+    description: Json;
     images: string[];
     created_at: string;
     price:number;
