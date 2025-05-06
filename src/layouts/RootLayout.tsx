@@ -1,11 +1,12 @@
-import { Outlet, useLocation } from "react-router-dom"
-import { Navbar } from "../components/shared/Navbar"
-import { Footer } from "../components/shared/Footer"
+import { Outlet, useLocation } from "react-router-dom";
+import { Navbar } from "../components/shared/Navbar";
+import { Footer } from "../components/shared/Footer";
 import { Banner } from "../components/home/Banner";
 import { Newsletter } from "../components/home/Newsletter";
 
-
 export const RootLayout = () => {
+  const { pathname } = useLocation();
+
 
     const { pathname } = useLocation();
     console.log(pathname);
@@ -21,6 +22,7 @@ export const RootLayout = () => {
             pathname === '/' && <Newsletter />}
         <Footer />
         
+
     </div>
-    )
-}
+  );
+};
