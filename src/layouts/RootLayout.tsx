@@ -6,6 +6,8 @@ import { Newsletter } from "../components/home/Newsletter";
 
 export const RootLayout = () => {
   const { pathname } = useLocation();
+
+  const { pathname } = useLocation();
   console.log(pathname);
 
   return (
