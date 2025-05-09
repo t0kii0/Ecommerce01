@@ -14,6 +14,6 @@ export const useFilteredProduct = ({page, brands}: {page: number; brands: string
     return{ 
         data: data?.data,
         isLoading,
-        totalProducts: data?.count,
+        totalProducts: data?.count?? 0,
     }
 }
