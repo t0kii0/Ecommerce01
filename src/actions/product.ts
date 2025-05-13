@@ -1,4 +1,4 @@
-import { supabase } from "../supanase/client"
+import { supabase } from "../supabase/client"
 
 export const getProducts = async () => {
     const {data: products, error} = await supabase
