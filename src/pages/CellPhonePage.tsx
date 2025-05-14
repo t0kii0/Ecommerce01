@@ -1,64 +1,38 @@
-import { useState } from "react";
-import { CardProduct } from "../components/products/CardProduct";
-import { ContainerFilter } from "../components/products/ContainerFilter";
-import { prepareProducts } from "../helpers";
-import { useFilteredProduct, useProduct } from "../hooks";
-import { Pagination } from "../components/shared/Pagination";
+import { Separator } from "../components/shared/Separator";
+import { formarPrice } from "../helpers";
 
 export const CellPhonePage = () => {
-
-   const [page, setPage] = useState(1)
-   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
-
-   const {data:products, isLoading, totalProducts} = useFilteredProduct ({
-      page,
-      brands: selectedBrands,
-   });
-
-   if(isLoading || !products) return 
-
-  const preparedProducts = prepareProducts(products);
-
   return (
     <>
-      <h1 className="text-5xl font-semibold text-center mb-12">Celulares</h1>
-
-      <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-        <ContainerFilter
-        setSelectedBrands = {setSelectedBrands}
-        selectedBrands={selectedBrands}
-         />
-          
-
-        {
-           isLoading? (
-            <div className="col-span-2 flex items-center justify-center h-[500px]" >
-              <p className="text-2xl">Cargando....</p>
-            </div>  
-          ) : (
-            <div className="col-span-2 lg:col-span-2 xl:col-span-4 flex flex-col gap-12">
-            <div className="grid  gap-4 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
-              {preparedProducts.map((product) => (
-                <CardProduct
-                  key={product.id}
-                  name={product.name}
-                  price={product.price}
-                  colors={product.colors}
-                  img={product.images[0]}
-                  slug={product.slug}
-                  variants={product.variants}
-                />
-              ))}
+      <div className="h-fit flex flex-col md:flex-row gap-16 mt-8">
+        {/* Grid de imagenes */}
+        <div>Galeria de imagenes</div>
+        <div className="flex-1 space-y-5">
+          <h1 className="text-3xl font-bold tracking-tight">
+            Samsung Galaxy S21 Ultra 5g
+          </h1>
+          <div className="flex gap-5 item-center">
+            <span className="tracking-wide text-lg font-semibold">
+              {formarPrice(1200)}
+            </span>
+            <div className="relative">
+              {/* TAG -> Agotado */}
+              <span>Agotado</span>
             </div>
-            {/** Todo Paginacion */}
-            <Pagination
-              totalItems={totalProducts}
-              page={page}
-              setPage={setPage} />
           </div>
-          )
-        }
-
+          <Separator />
+          {/* Caracteristicas */}
+          <ul className="space-y-2 ml-7 my-10">
+            <li className="text-sm flex items-center gap-2 tracking-tight font-medium">
+              <span className="bg-black w-{5px] h-[5px] rounded-full"></span>
+              256 GB de almacenamiento
+            </li>
+          </ul>
+          <div className="flex flex-col gap-3">
+            <p>color: Azul</p>
+            <div className="flex gap-3"></div>
+          </div>
+        </div>
       </div>
     </>
   );
