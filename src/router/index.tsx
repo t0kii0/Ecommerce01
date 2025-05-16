@@ -12,7 +12,7 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "cellphones/slug",
+        path: "celulares/:slug",
         element: <CellPhonePage />,
       },
       {
