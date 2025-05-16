@@ -3,17 +3,19 @@ import { formarPrice } from "../helpers";
 import { Minus } from "lucide-react";
 import { Plus } from "lucide-react";
 import { CiDeliveryTruck } from "react-icons/ci";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { BsChatLeftText } from "react-icons/bs";
 import { ProductDescription } from "../components/one-product/ProductDescription";
 import { GridImages } from "../components/one-product/GridImages";
+import { useProduct } from "../hooks";
 
 export const CellPhonePage = () => {
+  const { slug } = useParams<{ slug: string }>();
+  const { product, isLoading, isError } = useProduct(slug || " ");
   return (
     <>
       <div className="h-fit flex flex-col md:flex-row gap-16 mt-8">
-        
-        <GridImages images={[]}/>
+        <GridImages images={[]} />
 
         <div>Galeria de imagenes</div>
         <div className="flex-1 space-y-5">

@@ -1,12 +1,15 @@
-import { useQuery } from "@tanstack/react-query"
-import { getProducts } from "../../actions"
+import { useQuery } from "@tanstack/react-query";
+import { getProductsBySlug } from "../../actions";
 
-export const useProduct = () =>{
-    const{data, isLoading} = useQuery ({
-        queryKey: ['products'],
-        queryFn: () => getProducts(),
-        staleTime: 1000 * 60 * 5,
-
-    });
-    return {products: data, isLoading}
+export const useProduct = (slug: string) => {
+  const {
+    data: product,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["products"],
+    queryFn: () => getProductsBySlug(slug),
+    retry: false,
+  });
+  return { product, isError, isLoading };
 };
