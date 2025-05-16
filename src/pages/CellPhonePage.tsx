@@ -5,12 +5,16 @@ import { Plus } from "lucide-react";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import { BsChatLeftText } from "react-icons/bs";
+import { ProductDescription } from "../components/one-product/ProductDescription";
+import { GridImages } from "../components/one-product/GridImages";
 
 export const CellPhonePage = () => {
   return (
     <>
       <div className="h-fit flex flex-col md:flex-row gap-16 mt-8">
-        {/* Grid de imagenes */}
+        
+        <GridImages images={[]}/>
+
         <div>Galeria de imagenes</div>
         <div className="flex-1 space-y-5">
           <h1 className="text-3xl font-bold tracking-tight">
@@ -115,6 +119,7 @@ export const CellPhonePage = () => {
       </div>
 
       {/* Descripcion */}
+      <ProductDescription />
     </>
   );
 };

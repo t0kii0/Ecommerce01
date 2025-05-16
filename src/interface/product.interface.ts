@@ -1,4 +1,4 @@
-import { Json } from "../supanase/supabase";
+import { Json } from "../supabase/supabase";
 
 export interface Color {
   name: string;

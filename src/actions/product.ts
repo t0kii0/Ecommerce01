@@ -1,4 +1,5 @@
-import { supabase } from "../supanase/client";
+import { supabase } from "../supabase/client";
+
 
 export const getProducts = async () => {
   const { data: products, error } = await supabase
@@ -68,3 +69,15 @@ export const getRandomProducts = async () => {
   const randomProducts = products.sort(() => 0.5 - Math.random()).slice(0, 4);
   return randomProducts;
 };
+
+export const getProductsBySlug = async (slug: string) =>{
+  const {data, error} = await supabase
+        .from('products')
+        .select('*,variants(*)')
+        .eq('slug',slug);
+        if(error) {
+          console.log(error.message);
+          throw new Error(error.message);
+        }
+        return data;
+}
