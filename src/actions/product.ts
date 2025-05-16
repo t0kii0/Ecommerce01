@@ -1,6 +1,5 @@
 import { supabase } from "../supabase/client";
 
-
 export const getProducts = async () => {
   const { data: products, error } = await supabase
     .from("products")
@@ -70,14 +69,14 @@ export const getRandomProducts = async () => {
   return randomProducts;
 };
 
-export const getProductsBySlug = async (slug: string) =>{
-  const {data, error} = await supabase
-        .from('products')
-        .select('*,variants(*)')
-        .eq('slug',slug);
-        if(error) {
-          console.log(error.message);
-          throw new Error(error.message);
-        }
-        return data;
-}
+export const getProductsBySlug = async (slug: string) => {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*,variants(*)")
+    .eq("slug", slug);
+  if (error) {
+    console.log(error.message);
+    throw new Error(error.message);
+  }
+  return data;
+};
