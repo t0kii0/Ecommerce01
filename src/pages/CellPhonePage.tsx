@@ -8,10 +8,77 @@ import { BsChatLeftText } from "react-icons/bs";
 import { ProductDescription } from "../components/one-product/ProductDescription";
 import { GridImages } from "../components/one-product/GridImages";
 import { useProduct } from "../hooks";
+import { useEffect, useMemo, useState } from "react";
+import { VariantProduct } from "../interface";
+
+interface Acc {
+  [key: string]: {
+    name: string;
+    storage: string[];
+  };
+}
 
 export const CellPhonePage = () => {
   const { slug } = useParams<{ slug: string }>();
   const { product, isLoading, isError } = useProduct(slug || " ");
+
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
+  const [selectedStorage, setSelectedStorage] = useState<string | null>(null);
+  const [selectedVariant, setSelectedVariant] = useState<VariantProduct | null>(
+    null
+  );
+
+  //Agrupamos las varinates por color
+  const colors = useMemo(() => {
+    return (
+      product?.variants.reduce((acc: Acc, variant: VariantProduct) => {
+        const { color, color_name, storage } = variant;
+        if (!acc[color]) {
+          acc[color] = {
+            name: color_name,
+            storage: [],
+          };
+        }
+
+        if (!acc[color].storage.includes(storage)) {
+          acc[color].storage.push(storage);
+        }
+        return acc;
+      }, {} as Acc) || {}
+    );
+  }, [product?.variants]);
+
+  //Obten4r el primer color predeterminado si no se ha seleccionado ninguna
+
+  const availableColors = Object.keys(colors);
+  useEffect(() => {
+    if (!selectedColor && availableColors.length > 0) {
+      setSelectedColor(availableColors[0]);
+    }
+  }, [availableColors, selectedColor]);
+
+  // Actualizar el almacenamiento seleccionado cuando cambia el color
+  useEffect(() => {
+    if (selectedColor && colors[selectedColor] && !selectedStorage) {
+      setSelectedStorage(colors[selectedColor].storage[0]);
+    }
+  }, [selectedColor, colors, selectedStorage]);
+
+  // obtener la variante seleccionada
+  useEffect(() => {
+    if (selectedColor && selectedStorage) {
+      const variant = product?.variants.find(
+        (variant) =>
+          variant.color === selectedColor && variant.storage === selectedStorage
+      );
+      setSelectedVariant(variant as VariantProduct | null);
+    }
+  }, [product?.variants, selectedColor, selectedStorage]);
+
+  // obtener el stock
+
+  const isOutOfStock = selectedVariant?.stock === 0;
+
   return (
     <>
       <div className="h-fit flex flex-col md:flex-row gap-16 mt-8">
