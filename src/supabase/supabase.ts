@@ -194,7 +194,7 @@ export type Database = {
           brand: string
           created_at: string
           description: Json
-          features: string | null
+          features: string[] 
           id: string
           images: string[]
           name: string
