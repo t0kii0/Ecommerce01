@@ -16,6 +16,7 @@ export const RootLayout = () => {
         <Outlet />
       </main>
       {pathname === "/" && <Newsletter />}
+      {true && <Sheet />}
       <Footer />
     </div>
   );
